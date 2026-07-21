@@ -151,26 +151,15 @@ function fadeOutAndPause() {
   }
 
   window.clearInterval(fadeInterval);
+  fadeInterval = null;
 
-  fadeInterval = window.setInterval(() => {
-    const nextVolume = music.volume - 0.04;
+  music.pause();
+  music.volume = initialVolume;
 
-    if (nextVolume <= initialVolume) {
-      music.volume = initialVolume;
-      music.pause();
+  isPlaying = false;
+  automaticStartPending = false;
 
-      window.clearInterval(fadeInterval);
-      fadeInterval = null;
-
-      isPlaying = false;
-
-      updateMusicButton();
-
-      return;
-    }
-
-    music.volume = nextVolume;
-  }, 60);
+  updateMusicButton();
 }
 
 /* =========================
