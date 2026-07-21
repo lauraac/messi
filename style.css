@@ -299,29 +299,38 @@ body::before {
 }
 
 .whatsapp-ball {
-  width: 25px;
-  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  display: grid;
-  place-items: center;
+  width: 18px;
+  height: 18px;
 
-  border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 50%;
 
-  background: rgba(0, 35, 86, 0.4);
-
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
-
-  text-decoration: none;
-
-  cursor: pointer;
+  opacity: 0.75;
 
   transition:
-    transform 0.2s ease,
-    filter 0.2s ease,
-    box-shadow 0.2s ease;
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
 
-  -webkit-tap-highlight-color: transparent;
+.whatsapp-ball img {
+  width: 16px;
+  height: 16px;
+
+  display: block;
+
+  object-fit: contain;
+}
+
+.whatsapp-ball:hover {
+  opacity: 1;
+  transform: scale(1.18) rotate(18deg);
+}
+
+.whatsapp-ball:active {
+  transform: scale(0.92);
 }
 
 .whatsapp-ball img {
