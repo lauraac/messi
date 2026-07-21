@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <title>Jorge Antonio cumple 10 años</title>
+
+  <meta name="description"
+    content="Acompáñanos a celebrar los 10 años de Jorge Antonio con una divertida reta de fútbol.">
+
+  <!-- VISTA PREVIA PARA WHATSAPP Y REDES SOCIALES -->
+
+  <meta property="og:type" content="website">
+
+  <meta property="og:title" content="⚽ Jorge Antonio cumple 10 años 🎉">
+
+  <meta property="og:description" content="Miércoles 22 de julio a las 6:00 p. m. en el Parque de San Juanistas.">
+
+  <!-- Debe ser una dirección completa cuando publiques la página -->
+  <meta property="og:image" content="https://TU-DOMINIO.com/img/">
+
+  <meta property="og:url" content="https://TU-DOMINIO.com/">
+
+  <meta property="og:locale" content="es_MX">
+
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="stylesheet" href="style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Confeti -->
+  <div id="particles" aria-hidden="true"></div>
+
+  <!-- Balón animado -->
+  <div class="ball" aria-hidden="true"></div>
+
+  <main class="invitation-page">
+
+    <section class="card">
+
+      <!-- Messi sobresale de la tarjeta -->
+      <img src="img/messi.png" class="lego" alt="Figura de futbolista con camiseta número 10">
+
+      <!-- Imagen con los datos -->
+      <img src="img/informacion.png" class="info-img" alt="Información del cumpleaños de Jorge Antonio">
+
+      <!-- Botón funcional -->
+      <a class="boton" href="https://www.google.com/maps/search/?api=1&query=Parque+de+San+Juanistas+Colonia+Campestre"
+        target="_blank" rel="noopener noreferrer">
+        <span class="location-icon">📍</span>
+
+        <span class="location-text">
+          <strong>Ver ubicación</strong>
+          <small>Abrir en Google Maps</small>
+        </span>
+      </a>
+
+    </section>
+
+    <!-- Pie de página -->
+    <footer class="footer-futbol">
+      <img src="img/footer-futbol.png" alt="" class="footer-image">
+
+      <p>⚽ ¡Te esperamos para celebrar! ⚽</p>
+    </footer>
+
+  </main>
+
+  <!-- Música -->
+  <audio id="backgroundMusic" src="img/messi.mp3" preload="metadata" loop></audio>
+
+  <!-- Botón flotante para música -->
+  <button id="musicButton" class="music-button" type="button" aria-label="Reproducir música" aria-pressed="false">
+    <span id="musicIcon" class="music-icon">▶</span>
+    <span id="musicLabel" class="music-label">Música</span>
+  </button>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>

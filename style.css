@@ -1,0 +1,625 @@
+:root {
+  --blue: #0077ff;
+  --dark-blue: #003b94;
+  --light-blue: #7dd3ff;
+  --white: #ffffff;
+}
+
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  padding: max(170px, env(safe-area-inset-top)) 12px
+    calc(100px + env(safe-area-inset-bottom));
+
+  font-family: "Poppins", sans-serif;
+
+  background: url("img/fondo1.png") center center / cover no-repeat fixed;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Oscurece ligeramente el fondo */
+
+body::before {
+  content: "";
+
+  position: fixed;
+  z-index: 0;
+
+  inset: 0;
+
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 119, 255, 0.08),
+    rgba(0, 0, 0, 0.58)
+  );
+
+  pointer-events: none;
+}
+
+/* =========================
+   PÁGINA
+========================= */
+
+.invitation-page {
+  position: relative;
+  z-index: 10;
+
+  width: 100%;
+  max-width: 440px;
+
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =========================
+   TARJETA
+========================= */
+
+.card {
+  position: relative;
+
+  width: 100%;
+
+  padding: 105px 20px 28px;
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 32px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  box-shadow:
+    0 22px 55px rgba(0, 0, 0, 0.5),
+    inset 0 0 24px rgba(255, 255, 255, 0.06);
+
+  overflow: visible;
+
+  animation: subir 0.8s ease;
+}
+
+/* =========================
+   MESSI SOBRESALIENDO
+========================= */
+
+.lego {
+  position: absolute;
+  z-index: 20;
+
+  top: -190px;
+  left: 50%;
+
+  display: block;
+
+  width: min(245px, 65vw);
+  max-height: 285px;
+
+  object-fit: contain;
+  object-position: center bottom;
+
+  transform: translateX(-50%);
+
+  filter: drop-shadow(0 16px 15px rgba(0, 0, 0, 0.42))
+    drop-shadow(0 0 12px rgba(75, 190, 255, 0.3));
+
+  animation: flotar 3s ease-in-out infinite;
+
+  pointer-events: none;
+}
+
+/* =========================
+   IMAGEN DE INFORMACIÓN
+========================= */
+
+.info-img {
+  display: block;
+
+  width: 100%;
+  max-width: 365px;
+  height: auto;
+
+  margin: 0 auto 20px;
+
+  object-fit: contain;
+
+  border-radius: 20px;
+
+  filter: drop-shadow(0 14px 25px rgba(0, 0, 0, 0.35));
+
+  animation: aparecer 0.8s ease;
+}
+
+/* =========================
+   BOTÓN UBICACIÓN
+========================= */
+
+.boton {
+  width: min(100%, 320px);
+  min-height: 64px;
+
+  margin: 0 auto;
+  padding: 10px 18px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  border-radius: 50px;
+
+  color: var(--white);
+  text-decoration: none;
+
+  background: linear-gradient(135deg, #149bff, #0055d8);
+
+  box-shadow:
+    0 10px 22px rgba(0, 74, 190, 0.42),
+    inset 0 1px rgba(255, 255, 255, 0.35);
+
+  transition:
+    transform 0.25s ease,
+    filter 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.boton:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.08);
+
+  box-shadow: 0 14px 28px rgba(0, 74, 190, 0.55);
+}
+
+.boton:active {
+  transform: scale(0.97);
+}
+
+.location-icon {
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  font-size: 23px;
+
+  background: rgba(0, 35, 105, 0.44);
+}
+
+.location-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  line-height: 1.15;
+}
+
+.location-text strong {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.location-text small {
+  margin-top: 3px;
+
+  color: #d9f3ff;
+
+  font-size: 10px;
+  font-weight: 500;
+}
+
+/* =========================
+   PIE DE PÁGINA
+========================= */
+
+.footer-futbol {
+  position: relative;
+
+  width: calc(100% - 16px);
+  min-height: 105px;
+
+  margin-top: 22px;
+  padding: 25px 15px 18px;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 25px;
+
+  background: linear-gradient(rgba(0, 35, 86, 0.28), rgba(0, 15, 45, 0.65));
+
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+.footer-image {
+  position: absolute;
+  z-index: 0;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  opacity: 0.7;
+}
+
+.footer-futbol p {
+  position: relative;
+  z-index: 1;
+
+  color: white;
+
+  text-align: center;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  text-shadow: 0 2px 7px rgba(0, 0, 0, 0.9);
+}
+
+/* =========================
+   BOTÓN DE MÚSICA
+========================= */
+
+.music-button {
+  position: fixed;
+  z-index: 100;
+
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(18px, env(safe-area-inset-bottom));
+
+  min-width: 112px;
+  min-height: 50px;
+
+  padding: 8px 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50px;
+
+  color: white;
+
+  background: linear-gradient(
+    135deg,
+    rgba(0, 132, 255, 0.96),
+    rgba(0, 53, 159, 0.96)
+  );
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.45),
+    0 0 20px rgba(0, 151, 255, 0.35);
+
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+.music-button:hover {
+  transform: scale(1.05);
+  filter: brightness(1.08);
+}
+
+.music-button:active {
+  transform: scale(0.95);
+}
+
+.music-button.is-playing {
+  animation: musicPulse 1.8s ease-in-out infinite;
+}
+
+.music-icon {
+  display: grid;
+  place-items: center;
+
+  width: 30px;
+  height: 30px;
+
+  border-radius: 50%;
+
+  background: rgba(0, 25, 80, 0.42);
+}
+
+.music-label {
+  font-size: 13px;
+}
+
+/* =========================
+   BALÓN ANIMADO
+========================= */
+
+.ball {
+  position: fixed;
+  z-index: 5;
+
+  left: -90px;
+  bottom: -90px;
+
+  width: 85px;
+  height: 85px;
+
+  background: url("img/balon.png") center / contain no-repeat;
+
+  filter: drop-shadow(0 8px 7px rgba(0, 0, 0, 0.45));
+
+  pointer-events: none;
+
+  animation: balon 7s linear infinite;
+}
+
+/* =========================
+   CONFETI
+========================= */
+
+#particles {
+  position: fixed;
+  z-index: 30;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+.confeti {
+  position: absolute;
+
+  top: -30px;
+
+  width: 8px;
+  height: 16px;
+
+  opacity: 0.9;
+
+  animation-name: caer;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+/* =========================
+   ANIMACIONES
+========================= */
+
+@keyframes subir {
+  from {
+    opacity: 0;
+    transform: translateY(70px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes flotar {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+@keyframes musicPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 8px 25px rgba(0, 0, 0, 0.45),
+      0 0 14px rgba(0, 151, 255, 0.35);
+  }
+
+  50% {
+    box-shadow:
+      0 8px 25px rgba(0, 0, 0, 0.45),
+      0 0 28px rgba(0, 190, 255, 0.8);
+  }
+}
+
+@keyframes caer {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+
+    opacity: 0;
+  }
+}
+
+@keyframes balon {
+  0% {
+    left: -90px;
+    bottom: -90px;
+    transform: rotate(0deg);
+  }
+
+  14% {
+    left: 15%;
+    bottom: 42%;
+    transform: rotate(360deg);
+  }
+
+  27% {
+    left: 30%;
+    bottom: 0;
+    transform: rotate(600deg);
+  }
+
+  43% {
+    left: 48%;
+    bottom: 30%;
+    transform: rotate(980deg);
+  }
+
+  58% {
+    left: 63%;
+    bottom: 0;
+    transform: rotate(1350deg);
+  }
+
+  74% {
+    left: 80%;
+    bottom: 20%;
+    transform: rotate(1750deg);
+  }
+
+  100% {
+    left: 110%;
+    bottom: -100px;
+    transform: rotate(2300deg);
+  }
+}
+
+/* =========================
+   CELULARES PEQUEÑOS
+========================= */
+
+@media (max-width: 480px) {
+  body {
+    padding: max(145px, env(safe-area-inset-top)) 9px
+      calc(95px + env(safe-area-inset-bottom));
+
+    background-attachment: scroll;
+  }
+
+  .invitation-page {
+    max-width: 390px;
+  }
+
+  .card {
+    padding: 92px 13px 22px;
+
+    border-radius: 26px;
+  }
+
+  .lego {
+    top: -165px;
+
+    width: min(215px, 62vw);
+    max-height: 250px;
+  }
+
+  .info-img {
+    max-width: 100%;
+
+    margin-bottom: 16px;
+
+    border-radius: 16px;
+  }
+
+  .boton {
+    width: calc(100% - 12px);
+    min-height: 58px;
+
+    padding: 8px 14px;
+  }
+
+  .location-text strong {
+    font-size: 16px;
+  }
+
+  .music-button {
+    min-width: 52px;
+    min-height: 52px;
+
+    padding: 8px;
+  }
+
+  .music-label {
+    display: none;
+  }
+
+  .ball {
+    width: 65px;
+    height: 65px;
+  }
+}
+
+/* Celulares muy bajos */
+
+@media (max-height: 700px) and (max-width: 480px) {
+  body {
+    padding-top: 130px;
+  }
+
+  .card {
+    padding-top: 78px;
+  }
+
+  .lego {
+    top: -150px;
+    width: 190px;
+  }
+}
+
+/* Personas que desactivan animaciones */
+
+@media (prefers-reduced-motion: reduce) {
+  .lego,
+  .ball,
+  .music-button,
+  .card,
+  .info-img,
+  .confeti {
+    animation: none !important;
+  }
+}
