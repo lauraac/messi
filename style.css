@@ -271,7 +271,80 @@ body::before {
 
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
 }
+.footer-content {
+  position: relative;
+  z-index: 1;
 
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 7px;
+}
+
+.footer-contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  color: rgba(255, 255, 255, 0.72);
+
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.whatsapp-ball {
+  width: 25px;
+  height: 25px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+
+  background: rgba(0, 35, 86, 0.4);
+
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease,
+    box-shadow 0.2s ease;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+.whatsapp-ball img {
+  display: block;
+
+  width: 21px;
+  height: 21px;
+
+  object-fit: contain;
+}
+
+.whatsapp-ball:hover {
+  transform: rotate(15deg) scale(1.13);
+  filter: brightness(1.12);
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.45),
+    0 0 10px rgba(85, 210, 255, 0.5);
+}
+
+.whatsapp-ball:active {
+  transform: scale(0.92);
+}
 .footer-image {
   position: absolute;
   z-index: 0;
@@ -284,20 +357,6 @@ body::before {
   object-fit: cover;
 
   opacity: 0.7;
-}
-
-.footer-futbol p {
-  position: relative;
-  z-index: 1;
-
-  color: white;
-
-  text-align: center;
-
-  font-size: 14px;
-  font-weight: 700;
-
-  text-shadow: 0 2px 7px rgba(0, 0, 0, 0.9);
 }
 
 /* =========================
