@@ -3,6 +3,9 @@
   --dark-blue: #003b94;
   --light-blue: #7dd3ff;
   --white: #ffffff;
+
+  /* Tamaño del balón animado */
+  --ball-size: 96px;
 }
 
 /* =========================
@@ -26,18 +29,18 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
 
-  padding: max(170px, env(safe-area-inset-top)) 12px
+  padding: max(190px, env(safe-area-inset-top)) 12px
     calc(100px + env(safe-area-inset-bottom));
+
+  overflow-x: hidden;
+  overflow-y: auto;
 
   font-family: "Poppins", sans-serif;
 
   background: url("img/fondo1.png") center center / cover no-repeat fixed;
-
-  overflow-x: hidden;
-  overflow-y: auto;
 }
 
-/* Oscurece ligeramente el fondo */
+/* Capa oscura sobre el fondo */
 
 body::before {
   content: "";
@@ -57,7 +60,7 @@ body::before {
 }
 
 /* =========================
-   PÁGINA
+   CONTENIDO PRINCIPAL
 ========================= */
 
 .invitation-page {
@@ -85,12 +88,14 @@ body::before {
 
   padding: 105px 20px 28px;
 
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 32px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  overflow: visible;
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 32px;
 
   background: rgba(255, 255, 255, 0.08);
 
@@ -101,13 +106,11 @@ body::before {
     0 22px 55px rgba(0, 0, 0, 0.5),
     inset 0 0 24px rgba(255, 255, 255, 0.06);
 
-  overflow: visible;
-
   animation: subir 0.8s ease;
 }
 
 /* =========================
-   MESSI SOBRESALIENDO
+   MESSI
 ========================= */
 
 .lego {
@@ -120,10 +123,11 @@ body::before {
   display: block;
 
   width: min(245px, 65vw);
-  max-height: 285px;
+  height: auto;
+  max-height: none;
 
   object-fit: contain;
-  object-position: center bottom;
+  object-position: center;
 
   transform: translateX(-50%);
 
@@ -133,6 +137,7 @@ body::before {
   animation: flotar 3s ease-in-out infinite;
 
   pointer-events: none;
+  user-select: none;
 }
 
 /* =========================
@@ -158,7 +163,7 @@ body::before {
 }
 
 /* =========================
-   BOTÓN UBICACIÓN
+   BOTÓN DE UBICACIÓN
 ========================= */
 
 .boton {
@@ -301,40 +306,42 @@ body::before {
 
 .music-button {
   position: fixed;
-  z-index: 100;
+  z-index: 1000;
 
   right: max(16px, env(safe-area-inset-right));
   bottom: max(18px, env(safe-area-inset-bottom));
 
-  min-width: 112px;
-  min-height: 50px;
+  min-width: 122px;
+  min-height: 56px;
 
-  padding: 8px 16px;
+  padding: 7px 15px 7px 8px;
 
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 9px;
 
-  border: 2px solid rgba(255, 255, 255, 0.7);
+  border: 2px solid rgba(255, 255, 255, 0.75);
   border-radius: 50px;
 
   color: white;
 
   background: linear-gradient(
     135deg,
-    rgba(0, 132, 255, 0.96),
-    rgba(0, 53, 159, 0.96)
+    rgba(0, 132, 255, 0.97),
+    rgba(0, 53, 159, 0.97)
   );
 
   box-shadow:
     0 8px 25px rgba(0, 0, 0, 0.45),
-    0 0 20px rgba(0, 151, 255, 0.35);
+    0 0 20px rgba(0, 151, 255, 0.4);
 
   font-family: "Poppins", sans-serif;
   font-weight: 700;
 
   cursor: pointer;
+
+  -webkit-tap-highlight-color: transparent;
 
   transition:
     transform 0.2s ease,
@@ -347,7 +354,7 @@ body::before {
 }
 
 .music-button:active {
-  transform: scale(0.95);
+  transform: scale(0.94);
 }
 
 .music-button.is-playing {
@@ -355,19 +362,64 @@ body::before {
 }
 
 .music-icon {
+  position: relative;
+
+  flex-shrink: 0;
+
+  width: 42px;
+  height: 42px;
+
   display: grid;
   place-items: center;
 
-  width: 30px;
-  height: 30px;
+  overflow: visible;
 
   border-radius: 50%;
 
-  background: rgba(0, 25, 80, 0.42);
+  background: rgba(0, 25, 80, 0.46);
+}
+
+.music-icon img {
+  display: block;
+
+  width: 38px;
+  height: 38px;
+
+  object-fit: contain;
+
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.45));
+}
+
+.music-button.is-playing .music-icon img {
+  animation: girarBalonMusica 3s linear infinite;
+}
+
+.music-status-icon {
+  position: absolute;
+
+  right: -4px;
+  bottom: -3px;
+
+  width: 20px;
+  height: 20px;
+
+  display: grid;
+  place-items: center;
+
+  border: 2px solid white;
+  border-radius: 50%;
+
+  color: white;
+  background: #0049aa;
+
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
 }
 
 .music-label {
   font-size: 13px;
+  font-weight: 700;
 }
 
 /* =========================
@@ -376,21 +428,24 @@ body::before {
 
 .ball {
   position: fixed;
-  z-index: 5;
+  z-index: 999;
 
-  left: -90px;
-  bottom: -90px;
+  top: 12px;
+  left: 12px;
 
-  width: 85px;
-  height: 85px;
+  width: var(--ball-size);
+  height: var(--ball-size);
 
   background: url("img/balon.png") center / contain no-repeat;
 
-  filter: drop-shadow(0 8px 7px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.5));
 
   pointer-events: none;
+  user-select: none;
 
-  animation: balon 7s linear infinite;
+  will-change: transform;
+
+  animation: rebotePantalla 12s linear infinite;
 }
 
 /* =========================
@@ -430,11 +485,13 @@ body::before {
 @keyframes subir {
   from {
     opacity: 0;
+
     transform: translateY(70px) scale(0.96);
   }
 
   to {
     opacity: 1;
+
     transform: translateY(0) scale(1);
   }
 }
@@ -442,11 +499,13 @@ body::before {
 @keyframes aparecer {
   from {
     opacity: 0;
+
     transform: translateY(25px);
   }
 
   to {
     opacity: 1;
+
     transform: translateY(0);
   }
 }
@@ -459,6 +518,16 @@ body::before {
 
   50% {
     transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+@keyframes girarBalonMusica {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }
 
@@ -485,57 +554,86 @@ body::before {
   }
 }
 
-@keyframes balon {
+/*
+  Recorrido del balón por toda la pantalla.
+
+  Se usa:
+  100vw - tamaño del balón - margen
+  100dvh - tamaño del balón - margen
+*/
+
+@keyframes rebotePantalla {
   0% {
-    left: -90px;
-    bottom: -90px;
-    transform: rotate(0deg);
+    transform: translate(0, 0) rotate(0deg);
   }
 
-  14% {
-    left: 15%;
-    bottom: 42%;
-    transform: rotate(360deg);
+  12% {
+    transform: translate(
+        calc(45vw - var(--ball-size)),
+        calc(100dvh - var(--ball-size) - 24px)
+      )
+      rotate(380deg);
   }
 
-  27% {
-    left: 30%;
-    bottom: 0;
-    transform: rotate(600deg);
+  25% {
+    transform: translate(
+        calc(100vw - var(--ball-size) - 24px),
+        calc(55dvh - var(--ball-size))
+      )
+      rotate(760deg);
   }
 
-  43% {
-    left: 48%;
-    bottom: 30%;
-    transform: rotate(980deg);
+  38% {
+    transform: translate(calc(62vw - var(--ball-size)), 0) rotate(1140deg);
   }
 
-  58% {
-    left: 63%;
-    bottom: 0;
-    transform: rotate(1350deg);
+  50% {
+    transform: translate(0, calc(43dvh - var(--ball-size))) rotate(1520deg);
   }
 
-  74% {
-    left: 80%;
-    bottom: 20%;
-    transform: rotate(1750deg);
+  63% {
+    transform: translate(
+        calc(72vw - var(--ball-size)),
+        calc(100dvh - var(--ball-size) - 24px)
+      )
+      rotate(1940deg);
+  }
+
+  76% {
+    transform: translate(calc(100vw - var(--ball-size) - 24px), 0)
+      rotate(2350deg);
+  }
+
+  88% {
+    transform: translate(
+        calc(30vw - var(--ball-size)),
+        calc(65dvh - var(--ball-size))
+      )
+      rotate(2740deg);
   }
 
   100% {
-    left: 110%;
-    bottom: -100px;
-    transform: rotate(2300deg);
+    transform: translate(0, 0) rotate(3120deg);
   }
 }
 
 /* =========================
-   CELULARES PEQUEÑOS
+   CELULARES
 ========================= */
 
 @media (max-width: 480px) {
+  :root {
+    /* Un poco más pequeño que escritorio,
+       pero más grande que el anterior */
+    --ball-size: 78px;
+  }
+
   body {
-    padding: max(145px, env(safe-area-inset-top)) 9px
+    /*
+      Más espacio arriba para que no se corte
+      la cabeza de Messi.
+    */
+    padding: max(195px, env(safe-area-inset-top)) 9px
       calc(95px + env(safe-area-inset-bottom));
 
     background-attachment: scroll;
@@ -546,16 +644,21 @@ body::before {
   }
 
   .card {
-    padding: 92px 13px 22px;
+    padding: 100px 13px 22px;
 
     border-radius: 26px;
   }
 
   .lego {
-    top: -165px;
+    /*
+      La tarjeta empieza más abajo y Messi
+      queda completamente dentro de la pantalla.
+    */
+    top: -175px;
 
-    width: min(215px, 62vw);
-    max-height: 250px;
+    width: min(225px, 66vw);
+    height: auto;
+    max-height: none;
   }
 
   .info-img {
@@ -578,40 +681,72 @@ body::before {
   }
 
   .music-button {
-    min-width: 52px;
-    min-height: 52px;
+    right: max(12px, env(safe-area-inset-right));
+    bottom: max(14px, env(safe-area-inset-bottom));
 
-    padding: 8px;
+    min-width: 56px;
+    min-height: 56px;
+
+    padding: 6px;
+  }
+
+  .music-icon {
+    width: 42px;
+    height: 42px;
   }
 
   .music-label {
     display: none;
   }
-
-  .ball {
-    width: 65px;
-    height: 65px;
-  }
 }
 
-/* Celulares muy bajos */
+/* =========================
+   CELULARES MUY PEQUEÑOS
+========================= */
 
-@media (max-height: 700px) and (max-width: 480px) {
+@media (max-width: 360px) {
   body {
-    padding-top: 130px;
+    padding-top: 190px;
   }
 
   .card {
-    padding-top: 78px;
+    padding-top: 92px;
   }
 
   .lego {
-    top: -150px;
-    width: 190px;
+    top: -168px;
+
+    width: min(215px, 68vw);
   }
 }
 
-/* Personas que desactivan animaciones */
+/* =========================
+   CELULARES DE POCA ALTURA
+========================= */
+
+@media (max-height: 700px) and (max-width: 480px) {
+  body {
+    /*
+      No reducir demasiado este espacio porque
+      volvería a cortar la parte superior de Messi.
+    */
+    padding-top: 185px;
+  }
+
+  .card {
+    padding-top: 92px;
+  }
+
+  .lego {
+    top: -168px;
+
+    width: min(215px, 64vw);
+  }
+}
+
+/* =========================
+   ACCESIBILIDAD
+========================= */
 
 @media (prefers-reduced-motion: reduce) {
   .lego,

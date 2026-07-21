@@ -86,12 +86,18 @@
   </main>
 
   <!-- Música -->
-  <audio id="backgroundMusic" src="img/messi.mp3" preload="metadata" loop></audio>
+  <audio id="backgroundMusic" src="img/messi.mp3" preload="auto" loop></audio>
 
-  <!-- Botón flotante para música -->
-  <button id="musicButton" class="music-button" type="button" aria-label="Reproducir música" aria-pressed="false">
-    <span id="musicIcon" class="music-icon">▶</span>
-    <span id="musicLabel" class="music-label">Música</span>
+  <button id="musicButton" class="music-button" type="button" aria-label="Pausar música" aria-pressed="true">
+    <span class="music-icon">
+      <img id="musicBallIcon" src="img/balon.png" alt="">
+
+      <span id="musicStatusIcon" class="music-status-icon">Ⅱ</span>
+    </span>
+
+    <span id="musicLabel" class="music-label">
+      Pausar
+    </span>
   </button>
 
   <script src="script.js"></script>
